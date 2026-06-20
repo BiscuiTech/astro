@@ -48,7 +48,7 @@ import { SessionSchema } from '../../session/config.js';
 
 /** @lintignore */
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export interface ComplexifyUnionObj {}
+export interface ComplexifyUnionObj { }
 
 type ComplexifyWithUnion<T> = T & ComplexifyUnionObj;
 type ComplexifyWithOmit<T> = Omit<T, '__nonExistent'>;
@@ -102,6 +102,9 @@ export const ASTRO_CONFIG_DEFAULTS = {
 	vite: {},
 	legacy: {
 		collectionsBackwardsCompat: false,
+	},
+	serverIslands: {
+		base: '_server-islands'
 	},
 	redirects: {},
 	security: {
@@ -594,6 +597,9 @@ export const AstroConfigSchema = z.object({
 			collectionsBackwardsCompat: z.boolean().optional().default(false),
 		})
 		.prefault({}),
+	serverIslands: z.object({
+		base: z.string().optional().default(ASTRO_CONFIG_DEFAULTS.serverIslands.base)
+	})
 });
 
 export type AstroConfigType = z.infer<typeof AstroConfigSchema>;

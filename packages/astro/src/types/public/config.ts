@@ -54,10 +54,10 @@ export type CspScriptDirective = {
 
 type NormalizeLocales<T extends Locales> = {
 	[K in keyof T]: T[K] extends string
-		? T[K]
-		: T[K] extends { codes: Array<string> }
-			? T[K]['codes'][number]
-			: never;
+	? T[K]
+	: T[K] extends { codes: Array<string> }
+	? T[K]['codes'][number]
+	: never;
 }[number];
 
 export interface ImageServiceConfig<T extends Record<string, any> = Record<string, any>> {
@@ -72,9 +72,9 @@ export type ValidRedirectStatus = (typeof REDIRECT_STATUS_CODES)[number];
 export type RedirectConfig =
 	| string
 	| {
-			status: ValidRedirectStatus;
-			destination: string;
-	  };
+		status: ValidRedirectStatus;
+		destination: string;
+	};
 
 export type ServerConfig = {
 	/**
@@ -767,73 +767,73 @@ export interface AstroUserConfig<
 		 * You can further customize the `<meta>` element by enabling this feature with a configuration object that includes additional options.
 		 */
 		csp?:
-			| boolean
-			| {
-					/**
-					 * @docs
-					 * @name security.csp.algorithm
-					 * @kind h5
-					 * @type {"SHA-256" | "SHA-384" | "SHA-512"}
-					 * @default `'SHA-256'`
-					 * @version 6.0.0
-					 * @description
-					 *
-					 * The [hash function](https://developer.mozilla.org/en-US/docs/Glossary/Hash_function) to use when generating the hashes of the styles and scripts emitted by Astro.
-					 *
-					 * ```js title="astro.config.mjs"
-					 * import { defineConfig } from 'astro/config';
-					 *
-					 * export default defineConfig({
-					 *   security: {
-					 *     csp: {
-					 *      algorithm: 'SHA-512'
-					 *     }
-					 *   }
-					 * });
-					 * ```
-					 */
-					algorithm?: CspAlgorithm;
+		| boolean
+		| {
+			/**
+			 * @docs
+			 * @name security.csp.algorithm
+			 * @kind h5
+			 * @type {"SHA-256" | "SHA-384" | "SHA-512"}
+			 * @default `'SHA-256'`
+			 * @version 6.0.0
+			 * @description
+			 *
+			 * The [hash function](https://developer.mozilla.org/en-US/docs/Glossary/Hash_function) to use when generating the hashes of the styles and scripts emitted by Astro.
+			 *
+			 * ```js title="astro.config.mjs"
+			 * import { defineConfig } from 'astro/config';
+			 *
+			 * export default defineConfig({
+			 *   security: {
+			 *     csp: {
+			 *      algorithm: 'SHA-512'
+			 *     }
+			 *   }
+			 * });
+			 * ```
+			 */
+			algorithm?: CspAlgorithm;
 
-					/**
-					 * @docs
-					 * @name security.csp.directives
-					 * @kind h5
-					 * @type {string[]}
-					 * @default `[]`
-					 * @version 6.0.0
-					 * @description
-					 *
-					 * A list of [CSP directives](https://content-security-policy.com/#directive) (beyond `script-src` and `style-src` which are included by default) that defines valid sources for specific content types. These directives are added to all pages.
-					 *
-					 * ```js title="astro.config.mjs"
-					 * import { defineConfig } from 'astro/config';
-					 *
-					 * export default defineConfig({
-					 *   security: {
-					 *     csp: {
-					 *       directives: [
-					 *         "default-src 'self'",
-					 *         "img-src 'self' https://images.cdn.example.com"
-					 *       ]
-					 *     }
-					 *   }
-					 * });
-					 * ```
-					 * After the build, the `<meta>` element will add your directives into the `content` value alongside Astro's default directives:
-					 *
-					 * ```html
-					 * <meta
-					 *   http-equiv="content-security-policy"
-					 *   content="
-					 *     default-src 'self';
-					 *     img-src 'self' 'https://images.cdn.example.com';
-					 *     script-src 'self' 'sha256-somehash';
-					 *     style-src 'self' 'sha256-somehash';
-					 *   "
-					 * >
-					 * ```
-					 */
-					directives?: CspDirective[];
+			/**
+			 * @docs
+			 * @name security.csp.directives
+			 * @kind h5
+			 * @type {string[]}
+			 * @default `[]`
+			 * @version 6.0.0
+			 * @description
+			 *
+			 * A list of [CSP directives](https://content-security-policy.com/#directive) (beyond `script-src` and `style-src` which are included by default) that defines valid sources for specific content types. These directives are added to all pages.
+			 *
+			 * ```js title="astro.config.mjs"
+			 * import { defineConfig } from 'astro/config';
+			 *
+			 * export default defineConfig({
+			 *   security: {
+			 *     csp: {
+			 *       directives: [
+			 *         "default-src 'self'",
+			 *         "img-src 'self' https://images.cdn.example.com"
+			 *       ]
+			 *     }
+			 *   }
+			 * });
+			 * ```
+			 * After the build, the `<meta>` element will add your directives into the `content` value alongside Astro's default directives:
+			 *
+			 * ```html
+			 * <meta
+			 *   http-equiv="content-security-policy"
+			 *   content="
+			 *     default-src 'self';
+			 *     img-src 'self' 'https://images.cdn.example.com';
+			 *     script-src 'self' 'sha256-somehash';
+			 *     style-src 'self' 'sha256-somehash';
+			 *   "
+			 * >
+			 * ```
+			 */
+			directives?: CspDirective[];
 
 					/**
 					 * @docs
@@ -1866,51 +1866,51 @@ export interface AstroUserConfig<
 	 * See the [Prefetch guide](https://docs.astro.build/en/guides/prefetch/) for more information.
 	 */
 	prefetch?:
-		| boolean
-		| {
-				/**
-				 * @docs
-				 * @name prefetch.prefetchAll
-				 * @type {boolean}
-				 * @description
-				 * Enable prefetching for all links, including those without the `data-astro-prefetch` attribute.
-				 * This value defaults to `true` when using the `<ClientRouter />` router. Otherwise, the default value is `false`.
-				 *
-				 * ```js
-				 * prefetch: {
-				 * 	prefetchAll: true
-				 * }
-				 * ```
-				 *
-				 * When set to `true`, you can disable prefetching individually by setting `data-astro-prefetch="false"` on any individual links.
-				 *
-				 * ```html
-				 * <a href="/about" data-astro-prefetch="false">About</a>
-				 *```
-				 */
-				prefetchAll?: boolean;
+	| boolean
+	| {
+		/**
+		 * @docs
+		 * @name prefetch.prefetchAll
+		 * @type {boolean}
+		 * @description
+		 * Enable prefetching for all links, including those without the `data-astro-prefetch` attribute.
+		 * This value defaults to `true` when using the `<ClientRouter />` router. Otherwise, the default value is `false`.
+		 *
+		 * ```js
+		 * prefetch: {
+		 * 	prefetchAll: true
+		 * }
+		 * ```
+		 *
+		 * When set to `true`, you can disable prefetching individually by setting `data-astro-prefetch="false"` on any individual links.
+		 *
+		 * ```html
+		 * <a href="/about" data-astro-prefetch="false">About</a>
+		 *```
+		 */
+		prefetchAll?: boolean;
 
-				/**
-				 * @docs
-				 * @name prefetch.defaultStrategy
-				 * @type {'tap' | 'hover' | 'viewport' | 'load'}
-				 * @default `'hover'`
-				 * @description
-				 * The default prefetch strategy to use when the `data-astro-prefetch` attribute is set on a link with no value.
-				 *
-				 * - `'tap'`: Prefetch just before you click on the link.
-				 * - `'hover'`: Prefetch when you hover over or focus on the link. (default)
-				 * - `'viewport'`: Prefetch as the links enter the viewport.
-				 * - `'load'`: Prefetch all links on the page after the page is loaded.
-				 *
-				 * You can override this default value and select a different strategy for any individual link by setting a value on the attribute.
-				 *
-				 * ```html
-				 * <a href="/about" data-astro-prefetch="viewport">About</a>
-				 * ```
-				 */
-				defaultStrategy?: 'tap' | 'hover' | 'viewport' | 'load';
-		  };
+		/**
+		 * @docs
+		 * @name prefetch.defaultStrategy
+		 * @type {'tap' | 'hover' | 'viewport' | 'load'}
+		 * @default `'hover'`
+		 * @description
+		 * The default prefetch strategy to use when the `data-astro-prefetch` attribute is set on a link with no value.
+		 *
+		 * - `'tap'`: Prefetch just before you click on the link.
+		 * - `'hover'`: Prefetch when you hover over or focus on the link. (default)
+		 * - `'viewport'`: Prefetch as the links enter the viewport.
+		 * - `'load'`: Prefetch all links on the page after the page is loaded.
+		 *
+		 * You can override this default value and select a different strategy for any individual link by setting a value on the attribute.
+		 *
+		 * ```html
+		 * <a href="/about" data-astro-prefetch="viewport">About</a>
+		 * ```
+		 */
+		defaultStrategy?: 'tap' | 'hover' | 'viewport' | 'load';
+	};
 
 	/**
 	 * @docs
@@ -2279,7 +2279,7 @@ export interface AstroUserConfig<
 		 * @default `{ type: 'shiki', excludeLangs: ['math'] }`
 		 * @description
 		 * Which syntax highlighter to use for Markdown code blocks (\`\`\`), if any. This determines the CSS classes that Astro will apply to your Markdown code blocks.
-	 	 *
+			 *
 		 * - `shiki` - use the [Shiki](https://shiki.style) highlighter (`github-dark` theme configured by default)
 		 * - `prism` - use the [Prism](https://prismjs.com/) highlighter and [provide your own Prism stylesheet](https://docs.astro.build/en/guides/syntax-highlighting/#add-a-prism-stylesheet)
 		 * - `false` - do not apply syntax highlighting.
@@ -2293,55 +2293,55 @@ export interface AstroUserConfig<
 		 * }
 		 * ```
 		 *
-	 	 * For more control over syntax highlighting, you can instead specify a configuration object with the properties listed below.
+			 * For more control over syntax highlighting, you can instead specify a configuration object with the properties listed below.
 		 */
 		syntaxHighlight?:
-			| {
-					/**
-					 * @docs
-					 * @name markdown.syntaxHighlight.type
-					 * @kind h4
-					 * @type {'shiki' | 'prism'}
-					 * @default `'shiki'`
-					 * @version 5.5.0
-					 * @description
-					 *
-					 * The default CSS classes to apply to Markdown code blocks.
-					 * (If no other syntax highlighting configuration is needed, you can instead set `markdown.syntaxHighlight` directly to `shiki`, `prism`, or `false`.)
-					 *
-					 */
-					type?: SyntaxHighlightConfigType;
+		| {
+			/**
+			 * @docs
+			 * @name markdown.syntaxHighlight.type
+			 * @kind h4
+			 * @type {'shiki' | 'prism'}
+			 * @default `'shiki'`
+			 * @version 5.5.0
+			 * @description
+			 *
+			 * The default CSS classes to apply to Markdown code blocks.
+			 * (If no other syntax highlighting configuration is needed, you can instead set `markdown.syntaxHighlight` directly to `shiki`, `prism`, or `false`.)
+			 *
+			 */
+			type?: SyntaxHighlightConfigType;
 
-					/**
-					 * @docs
-					 * @name markdown.syntaxHighlight.excludeLangs
-					 * @kind h4
-					 * @type {string[]}
-					 * @default `['math']`
-					 * @version 5.5.0
-					 * @description
-					 *
-					 * An array of languages to exclude from the default syntax highlighting specified in `markdown.syntaxHighlight.type`.
-					 * This can be useful when using tools that create diagrams from Markdown code blocks, such as Mermaid.js and D2.
-					 *
-					 * ```js title="astro.config.mjs"
-					 * import { defineConfig } from 'astro/config';
-					 *
-					 * export default defineConfig({
-					 *   markdown: {
-					 *     syntaxHighlight: {
-					 *       type: 'shiki',
-					 *       excludeLangs: ['mermaid', 'math'],
-					 *     },
-					 *   },
-					 * });
-					 * ```
-					 *
-					 * */
-					excludeLangs?: string[];
-			  }
-			| SyntaxHighlightConfigType
-			| false;
+			/**
+			 * @docs
+			 * @name markdown.syntaxHighlight.excludeLangs
+			 * @kind h4
+			 * @type {string[]}
+			 * @default `['math']`
+			 * @version 5.5.0
+			 * @description
+			 *
+			 * An array of languages to exclude from the default syntax highlighting specified in `markdown.syntaxHighlight.type`.
+			 * This can be useful when using tools that create diagrams from Markdown code blocks, such as Mermaid.js and D2.
+			 *
+			 * ```js title="astro.config.mjs"
+			 * import { defineConfig } from 'astro/config';
+			 *
+			 * export default defineConfig({
+			 *   markdown: {
+			 *     syntaxHighlight: {
+			 *       type: 'shiki',
+			 *       excludeLangs: ['mermaid', 'math'],
+			 *     },
+			 *   },
+			 * });
+			 * ```
+			 *
+			 * */
+			excludeLangs?: string[];
+		}
+		| SyntaxHighlightConfigType
+		| false;
 		/**
 		 * @docs
 		 * @name markdown.remarkPlugins
@@ -2546,13 +2546,13 @@ export interface AstroUserConfig<
 		 * ```
 		 */
 		fallback?: [TLocales] extends [never]
-			? Record<string, string>
-			: {
-					[Locale in NormalizeLocales<NoInfer<TLocales>>]?: Exclude<
-						NormalizeLocales<NoInfer<TLocales>>,
-						Locale
-					>;
-				};
+		? Record<string, string>
+		: {
+			[Locale in NormalizeLocales<NoInfer<TLocales>>]?: Exclude<
+				NormalizeLocales<NoInfer<TLocales>>,
+				Locale
+			>;
+		};
 
 		/**
 		 * @docs
@@ -2592,105 +2592,105 @@ export interface AstroUserConfig<
 		 *
 		 */
 		routing?:
-			| {
-					/**
-					 * @docs
-					 * @name i18n.routing.prefixDefaultLocale
-					 * @kind h4
-					 * @type {boolean}
-					 * @default `false`
-					 * @version 3.7.0
-					 * @description
-					 *
-					 * When `false`, only non-default languages will display a language prefix.
-					 * The `defaultLocale` will not show a language prefix and content files do not exist in a localized folder.
-					 *  URLs will be of the form `example.com/[locale]/content/` for all non-default languages, but `example.com/content/` for the default locale.
-					 *
-					 * When `true`, all URLs will display a language prefix.
-					 * URLs will be of the form `example.com/[locale]/content/` for every route, including the default language.
-					 * Localized folders are used for every language, including the default.
-					 *
-					 * ```js
-					 * export default defineConfig({
-					 * 	i18n: {
-					 * 		defaultLocale: "en",
-					 * 		locales: ["en", "fr", "pt-br", "es"],
-					 * 		routing: {
-					 * 			prefixDefaultLocale: true,
-					 * 		}
-					 * 	}
-					 * })
-					 * ```
-					 */
-					prefixDefaultLocale?: boolean;
+		| {
+			/**
+			 * @docs
+			 * @name i18n.routing.prefixDefaultLocale
+			 * @kind h4
+			 * @type {boolean}
+			 * @default `false`
+			 * @version 3.7.0
+			 * @description
+			 *
+			 * When `false`, only non-default languages will display a language prefix.
+			 * The `defaultLocale` will not show a language prefix and content files do not exist in a localized folder.
+			 *  URLs will be of the form `example.com/[locale]/content/` for all non-default languages, but `example.com/content/` for the default locale.
+			 *
+			 * When `true`, all URLs will display a language prefix.
+			 * URLs will be of the form `example.com/[locale]/content/` for every route, including the default language.
+			 * Localized folders are used for every language, including the default.
+			 *
+			 * ```js
+			 * export default defineConfig({
+			 * 	i18n: {
+			 * 		defaultLocale: "en",
+			 * 		locales: ["en", "fr", "pt-br", "es"],
+			 * 		routing: {
+			 * 			prefixDefaultLocale: true,
+			 * 		}
+			 * 	}
+			 * })
+			 * ```
+			 */
+			prefixDefaultLocale?: boolean;
 
-					/**
-					 * @docs
-					 * @name i18n.routing.redirectToDefaultLocale
-					 * @kind h4
-					 * @type {boolean}
-					 * @default `false`
-					 * @version 4.2.0
-					 * @description
-					 *
-					 * Configures whether or not the home URL (`/`) generated by `src/pages/index.astro`
-					 * will redirect to `/[defaultLocale]` when `prefixDefaultLocale: true` is set.
-					 *
-					 * Set `redirectToDefaultLocale: true` to enable this automatic redirection at the root of your site:
-					 * ```js
-					 * // astro.config.mjs
-					 * export default defineConfig({
-					 *   i18n:{
-					 *     defaultLocale: "en",
-					 * 		locales: ["en", "fr"],
-					 *     routing: {
-					 *       prefixDefaultLocale: true,
-					 *       redirectToDefaultLocale: true
-					 *     }
-					 *   }
-					 * })
-					 *```
-					 * */
-					redirectToDefaultLocale?: boolean;
+			/**
+			 * @docs
+			 * @name i18n.routing.redirectToDefaultLocale
+			 * @kind h4
+			 * @type {boolean}
+			 * @default `false`
+			 * @version 4.2.0
+			 * @description
+			 *
+			 * Configures whether or not the home URL (`/`) generated by `src/pages/index.astro`
+			 * will redirect to `/[defaultLocale]` when `prefixDefaultLocale: true` is set.
+			 *
+			 * Set `redirectToDefaultLocale: true` to enable this automatic redirection at the root of your site:
+			 * ```js
+			 * // astro.config.mjs
+			 * export default defineConfig({
+			 *   i18n:{
+			 *     defaultLocale: "en",
+			 * 		locales: ["en", "fr"],
+			 *     routing: {
+			 *       prefixDefaultLocale: true,
+			 *       redirectToDefaultLocale: true
+			 *     }
+			 *   }
+			 * })
+			 *```
+			 * */
+			redirectToDefaultLocale?: boolean;
 
-					/**
-					 * @docs
-					 * @name i18n.routing.fallbackType
-					 * @kind h4
-					 * @type {"redirect" | "rewrite"}
-					 * @default `"redirect"`
-					 * @version 4.15.0
-					 * @description
-					 *
-					 * When [`i18n.fallback`](https://docs.astro.build/en/reference/configuration-reference/#i18nfallback) is configured to avoid showing a 404 page for missing page routes, this option controls whether to [redirect](https://docs.astro.build/en/guides/routing/#redirects) to the fallback page, or to [rewrite](https://docs.astro.build/en/guides/routing/#rewrites) the fallback page's content in place.
-					 *
-					 * By default, Astro's i18n routing creates pages that redirect your visitors to a new destination based on your fallback configuration. The browser will refresh and show the destination address in the URL bar.
-					 *
-					 * When `i18n.routing.fallback: "rewrite"` is configured, Astro will create pages that render the contents of the fallback page on the original, requested URL.
-					 *
-					 * With the following configuration, if you have the file `src/pages/en/about.astro` but not `src/pages/fr/about.astro`, the `astro build` command will generate `dist/fr/about.html` with the same content as the `dist/en/about.html` page.
-					 * Your site visitor will see the English version of the page at `https://example.com/fr/about/` and will not be redirected.
-					 *
-					 * ```js
-					 * //astro.config.mjs
-					 * export default defineConfig({
-					 * 	 i18n: {
-					 *     defaultLocale: "en",
-					 *     locales: ["en", "fr"],
-					 *     routing: {
-					 *     	prefixDefaultLocale: false,
-					 *     	fallbackType: "rewrite",
-					 *     },
-					 *     fallback: {
-					 *     	fr: "en",
-					 *     }
-					 *   },
-					 * })
-					 * ```
-					 */
-					fallbackType?: 'redirect' | 'rewrite';
-			  }
-			| 'manual';
+			/**
+			 * @docs
+			 * @name i18n.routing.fallbackType
+			 * @kind h4
+			 * @type {"redirect" | "rewrite"}
+			 * @default `"redirect"`
+			 * @version 4.15.0
+			 * @description
+			 *
+			 * When [`i18n.fallback`](https://docs.astro.build/en/reference/configuration-reference/#i18nfallback) is configured to avoid showing a 404 page for missing page routes, this option controls whether to [redirect](https://docs.astro.build/en/guides/routing/#redirects) to the fallback page, or to [rewrite](https://docs.astro.build/en/guides/routing/#rewrites) the fallback page's content in place.
+			 *
+			 * By default, Astro's i18n routing creates pages that redirect your visitors to a new destination based on your fallback configuration. The browser will refresh and show the destination address in the URL bar.
+			 *
+			 * When `i18n.routing.fallback: "rewrite"` is configured, Astro will create pages that render the contents of the fallback page on the original, requested URL.
+			 *
+			 * With the following configuration, if you have the file `src/pages/en/about.astro` but not `src/pages/fr/about.astro`, the `astro build` command will generate `dist/fr/about.html` with the same content as the `dist/en/about.html` page.
+			 * Your site visitor will see the English version of the page at `https://example.com/fr/about/` and will not be redirected.
+			 *
+			 * ```js
+			 * //astro.config.mjs
+			 * export default defineConfig({
+			 * 	 i18n: {
+			 *     defaultLocale: "en",
+			 *     locales: ["en", "fr"],
+			 *     routing: {
+			 *     	prefixDefaultLocale: false,
+			 *     	fallbackType: "rewrite",
+			 *     },
+			 *     fallback: {
+			 *     	fr: "en",
+			 *     }
+			 *   },
+			 * })
+			 * ```
+			 */
+			fallbackType?: 'redirect' | 'rewrite';
+		}
+		| 'manual';
 
 		/**
 		 * @docs
@@ -2732,8 +2732,8 @@ export interface AstroUserConfig<
 		 * See the [Internationalization Guide](https://docs.astro.build/en/guides/internationalization/#domains) for more details, including the limitations of this feature.
 		 */
 		domains?: [TLocales] extends [never]
-			? Record<string, string>
-			: Partial<Record<NormalizeLocales<NoInfer<TLocales>>, string>>;
+		? Record<string, string>
+		: Partial<Record<NormalizeLocales<NoInfer<TLocales>>, string>>;
 	};
 
 	/**
@@ -3056,10 +3056,10 @@ export interface AstroUserConfig<
 	 */
 
 	fonts?: [TFontProviders] extends [never]
-		? Array<FontFamily>
-		: {
-				[K in keyof TFontProviders]: FontFamily<TFontProviders[K]>;
-			};
+	? Array<FontFamily>
+	: {
+		[K in keyof TFontProviders]: FontFamily<TFontProviders[K]>;
+	};
 
 	/**
 	 * @docs
@@ -3171,6 +3171,23 @@ export interface AstroUserConfig<
 		collectionsBackwardsCompat?: boolean;
 	};
 
+	/**
+	 * @docs
+	 * @name serverIslands
+	 * @type {Object}
+	 * @description
+	 * 
+	 * Sets values for server islands.
+	 */
+	serverIslands: {
+		/**
+		 * Sets the URL base value for server islands specific calls. It is set after the root `base` value, if enabled.
+		 *
+		 * @type {string}
+		 * @default '_server-islands'
+		 */
+		base?: string
+	};
 	/**
 	 *
 	 * @kind heading
@@ -3337,7 +3354,7 @@ export interface AstroConfig extends AstroConfigType {
  * An inline Astro config that takes highest priority when merging with the user config,
  * and includes inline-specific options to configure how Astro runs.
  */
-export interface AstroInlineConfig extends AstroUserConfig, AstroInlineOnlyConfig {}
+export interface AstroInlineConfig extends AstroUserConfig, AstroInlineOnlyConfig { }
 export interface AstroInlineOnlyConfig {
 	/**
 	 * A custom path to the Astro config file. If relative, it'll resolve based on the current working directory.

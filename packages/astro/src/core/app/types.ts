@@ -57,8 +57,8 @@ export type ServerIslandMappings = {
 export type AssetsPrefix =
 	| string
 	| ({
-			fallback: string;
-	  } & Record<string, string>)
+		fallback: string;
+	} & Record<string, string>)
 	| undefined;
 
 export type SSRManifest = {
@@ -66,6 +66,7 @@ export type SSRManifest = {
 	routes: RouteInfo[];
 	site?: string;
 	base: string;
+	serverIslandsBase: string
 	/**
 	 * The base of the assets generated **by the user**. For example, scripts created by the user falls under this category.
 	 *

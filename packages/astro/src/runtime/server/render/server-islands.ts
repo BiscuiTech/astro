@@ -185,7 +185,7 @@ export class ServerIslandComponent {
 
 		const hostId = await this.getHostId();
 		const slash = this.result.base.endsWith('/') ? '' : '/';
-		let serverIslandUrl = `${this.result.base}${slash}_server-islands/${componentId}${this.result.trailingSlash === 'always' ? '/' : ''}`;
+		let serverIslandUrl = `${this.result.base}${slash}${this.result.serverIslandsBase}/${componentId}${this.result.trailingSlash === 'always' ? '/' : ''}`;
 
 		// Determine if its safe to use a GET request
 		const potentialSearchParams = createSearchParams(
@@ -214,7 +214,7 @@ export class ServerIslandComponent {
 				`const headers = new Headers(${headersJson});
 let response = await fetch(${serverIslandUrlJson}, { headers });`
 			: // POST request
-				`let data = {
+			`let data = {
 	encryptedComponentExport: ${stringifyForScript(componentExportEncrypted)},
 	encryptedProps: ${stringifyForScript(propsEncrypted)},
 	encryptedSlots: ${stringifyForScript(slotsEncrypted)},
