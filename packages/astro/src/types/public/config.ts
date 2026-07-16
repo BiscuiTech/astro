@@ -3173,6 +3173,24 @@ export interface AstroUserConfig<
 	};
 
 	/**
+		 * @docs
+		 * @name serverIslands
+		 * @type {Object}
+		 * @description
+		 *
+		 * Sets values for server islands.
+		 */
+	serverIslands: {
+		/**
+		 * Sets the URL base value for server islands specific calls. It is set after the root `base` value, if enabled.
+		 *
+		 * @type {string}
+		 * @default '_server-islands'
+		 */
+		base?: string
+	};
+
+	/**
 	 *
 	 * @kind heading
 	 * @name Experimental Flags

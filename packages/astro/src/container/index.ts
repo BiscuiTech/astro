@@ -173,6 +173,7 @@ function createManifest(
 		allowedDomains: manifest?.allowedDomains ?? [],
 		actionBodySizeLimit: 1024 * 1024,
 		serverIslandBodySizeLimit: 1024 * 1024,
+		serverIslandsBase: manifest?.serverIslandsBase ?? '_server-islands',
 		middleware: manifest?.middleware ?? middlewareInstance,
 		key: createKey(),
 		csp: manifest?.csp,
@@ -258,6 +259,7 @@ type AstroContainerManifest = Pick<
 	| 'assetsPrefix'
 	| 'base'
 	| 'userAssetsBase'
+	| 'serverIslandsBase'
 	| 'routes'
 	| 'assets'
 	| 'entryModules'

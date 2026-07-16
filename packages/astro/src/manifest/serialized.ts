@@ -229,6 +229,7 @@ async function createSerializedManifest(
 		serverIslandBodySizeLimit: settings.config.security?.serverIslandBodySizeLimit
 			? settings.config.security.serverIslandBodySizeLimit
 			: 1024 * 1024, // 1mb default
+		serverIslandsBase: settings.config.serverIslands.base,
 		key:
 			encodedKey ??
 			(await encodeKey(hasEnvironmentKey() ? await getEnvironmentKey() : await createKey())),
